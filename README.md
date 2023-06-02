@@ -68,6 +68,11 @@
 - 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
 
 ## 历史版本
+### v0.2.2
+- 新增翻译功能
+- 优化: 补全代码功能 提高补全的准确度
+- 热度temperature参数,默认值调整成0
+- 
 ### v0.2.1
 - 更换插件唯一GUID,和其他插件重复了
 - 新增微软Azure云
