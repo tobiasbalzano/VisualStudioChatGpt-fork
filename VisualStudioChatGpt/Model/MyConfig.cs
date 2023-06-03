@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Shell;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +13,7 @@ namespace VisualStudioChatGpt.Model
 {
     public class MyConfig
     {
-        static string configFile = "config.json";
+        static string configFile = @"c:\vsix\chatgpt\config.json";
 
         /// <summary>
         /// 读取配置文件
@@ -51,6 +53,11 @@ namespace VisualStudioChatGpt.Model
         public static void Set(MyConfigModel entity)
         {
             string updatedJson = JsonConvert.SerializeObject(entity);
+            string path = Directory.GetParent(configFile).FullName;
+            if (Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
             File.WriteAllText(configFile, updatedJson);
         }
     }
