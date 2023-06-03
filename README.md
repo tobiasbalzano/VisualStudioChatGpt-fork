@@ -1,9 +1,14 @@
 # Visual Studio ChatGPT
 - 这是一个直接在Visual Studio中添加chatGPT功能的扩展。
 - 您将能够直接通过文本编辑器或通过新的特定工具窗口查阅 chatGPT。
- 
-
 - Visual Studio 2022: [插件地址](https://marketplace.visualstudio.com/items?itemName=MogoVsixRightMenu1.VisualStudioChatGpt) 
+- 存储库地址: [Gitee(主库)](https://gitee.com/wangshuyu/visual-studio-chat-gpt) 
+- 存储库地址: [Github(辅库)](https://github.com/wangshuyu/VisualStudioChatGpt) 
+
+## 说明
+- 在1.0前的预览版本中,插件可能会存在bug,大家有问题可以随时提
+- 我尽量在当天修复bug
+
 
 ## 文本编辑器中的功能
 - 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令：
@@ -68,11 +73,15 @@
 - 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
 
 ## 历史版本
+### v0.2.3
+- 调整配置文件存储文职
+- 说明: 非常抱歉, 原来的存储配置方案,只能在当前vs窗口生效,不是全局生效,此版本已修复这个问题
+- 
 ### v0.2.2
 - 新增翻译功能
 - 优化: 补全代码功能 提高补全的准确度
 - 热度temperature参数,默认值调整成0
-- 
+
 ### v0.2.1
 - 更换插件唯一GUID,和其他插件重复了
 - 新增微软Azure云
