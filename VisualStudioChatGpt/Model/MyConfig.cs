@@ -8,12 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vs_ChatGpt.Model;
+using EnvDTE;
+using Microsoft.VisualStudio.Shell.Settings;
+using Microsoft.VisualStudio.Settings;
 
 namespace VisualStudioChatGpt.Model
 {
     public class MyConfig
     {
-        static string configFile = @"c:\vsix\chatgpt\config.json";
+        static string key = "MyConfig";
 
         /// <summary>
         /// 读取配置文件
@@ -26,14 +29,16 @@ namespace VisualStudioChatGpt.Model
             {
                 model = "gpt-3.5-turbo",
                 maxtoken = "500",
-                temperature = "0.7",
+                temperature = "0",
                 timeout = "60",
                 apiurl = apiurl,
             };
-            if (File.Exists(configFile))
+            var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
+            var store = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+
+            if (store.CollectionExists(key))
             {
-                string json = File.ReadAllText(configFile);
-                entity = JsonConvert.DeserializeObject<MyConfigModel>(json);
+                entity = JsonConvert.DeserializeObject<MyConfigModel>(store.GetString(key, "Config"));
             }
             if (string.IsNullOrEmpty(entity.apiurl))
             {
@@ -52,13 +57,17 @@ namespace VisualStudioChatGpt.Model
         /// <param name="entity"></param>
         public static void Set(MyConfigModel entity)
         {
-            string updatedJson = JsonConvert.SerializeObject(entity);
-            string path = Directory.GetParent(configFile).FullName;
-            if (Directory.Exists(path))
+            ThreadHelper.ThrowIfNotOnUIThread();
+            string json = JsonConvert.SerializeObject(entity);
+
+            var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
+            var store = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+
+            if (!store.CollectionExists(key))
             {
-                Directory.CreateDirectory(path);
+                store.CreateCollection(key);
             }
-            File.WriteAllText(configFile, updatedJson);
+            store.SetString(key, "Config", json);
         }
     }
 }
