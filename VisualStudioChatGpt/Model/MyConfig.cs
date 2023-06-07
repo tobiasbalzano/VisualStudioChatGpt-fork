@@ -30,7 +30,7 @@ namespace VisualStudioChatGpt.Model
                 model = "gpt-3.5-turbo",
                 maxtoken = "500",
                 temperature = "0",
-                timeout = "60",
+                timeout = "30",
                 apiurl = apiurl,
             };
             var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
