@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using System.IO;
 using System.Net;
+using Microsoft.VisualStudio.OLE.Interop;
 
 namespace VisualStudioChatGpt.Commands
 {
@@ -243,7 +244,12 @@ namespace VisualStudioChatGpt.Commands
                         string line;
                         while ((line = streamReader.ReadLine()) != null)
                         {
-                            if (!string.IsNullOrEmpty(line) && line.Contains("content"))
+                            if (line.Contains("prompt_tokens"))//非流返回
+                            {
+                                string content = JsonConvert.DeserializeObject<dynamic>(line)["choices"][0]["message"]["content"];
+                                showEvent.Invoke(content);//插入gpt结果
+                            }
+                            else if (!string.IsNullOrEmpty(line) && line.Contains("content"))//流形式返回
                             {
                                 line = line.Remove(0, 5);
                                 var obj = JsonConvert.DeserializeObject<dynamic>(line);
