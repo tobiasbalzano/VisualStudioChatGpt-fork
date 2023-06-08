@@ -17,6 +17,7 @@ namespace VisualStudioChatGpt.Model
     public class MyConfig
     {
         static string key = "MyConfig";
+        static string configFileName = "VisualStudioChatGpt.json";
 
         /// <summary>
         /// 读取配置文件
@@ -33,13 +34,19 @@ namespace VisualStudioChatGpt.Model
                 timeout = "30",
                 apiurl = apiurl,
             };
-            var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
-            var store = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+            //var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
+            //var store = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+            //if (store.CollectionExists(key))
+            //{
+            //    entity = JsonConvert.DeserializeObject<MyConfigModel>(store.GetString(key, "Config"));
+            //}
 
-            if (store.CollectionExists(key))
+            if (File.Exists(getConfigFilePath()))
             {
-                entity = JsonConvert.DeserializeObject<MyConfigModel>(store.GetString(key, "Config"));
+                string json = File.ReadAllText(getConfigFilePath());
+                entity = JsonConvert.DeserializeObject<MyConfigModel>(json);
             }
+
             if (string.IsNullOrEmpty(entity.apiurl))
             {
                 entity.apiurl = apiurl;
@@ -60,14 +67,16 @@ namespace VisualStudioChatGpt.Model
             ThreadHelper.ThrowIfNotOnUIThread();
             string json = JsonConvert.SerializeObject(entity);
 
-            var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
-            var store = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string path = System.IO.Path.Combine(appDataPath, "Microsoft", "VisualStudio")+ "\\"+ configFileName;
+            File.WriteAllText(getConfigFilePath(), json);
+        }
 
-            if (!store.CollectionExists(key))
-            {
-                store.CreateCollection(key);
-            }
-            store.SetString(key, "Config", json);
+        private static string getConfigFilePath()
+        {
+            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string path = System.IO.Path.Combine(appDataPath, "Microsoft", "VisualStudio") + "\\" + configFileName;
+            return path;
         }
     }
 }
