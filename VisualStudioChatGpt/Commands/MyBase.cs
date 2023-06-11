@@ -1,26 +1,17 @@
 ﻿using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
-using System.Globalization;
 using Task = System.Threading.Tasks.Task;
 using EnvDTE;
-using EnvDTE80;
-using Microsoft.VisualStudio.Editor;
-using Microsoft.VisualStudio.TextManager.Interop;
-using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.ComponentModelHost;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using VisualStudioChatGpt.Commands;
-using Newtonsoft.Json.Linq;
 using VisualStudioChatGpt.Model;
 using Newtonsoft.Json;
-using RestSharp;
 using System.IO;
 using System.Net;
-using Microsoft.VisualStudio.OLE.Interop;
+using System.Net.Http;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace VisualStudioChatGpt.Commands
 {
@@ -180,7 +171,7 @@ namespace VisualStudioChatGpt.Commands
         #endregion
 
         #region 请求OpenAI 获取数据
-
+        /*
         /// <summary>
         /// 请求OpenAI 获取数据
         /// </summary>
@@ -189,7 +180,7 @@ namespace VisualStudioChatGpt.Commands
         /// <param name="ltcid"></param> 
         /// <param name="timeout">默认超时 5秒</param> 
         /// <returns></returns>
-        internal static async Task OpenAiAsync(string word, MyShowEventHandler showEvent, MyStartEventHandler startEvent, MyEndEventHandler endEvent)
+        internal static async Task OpenAiAsync_bak(string word, MyShowEventHandler showEvent, MyStartEventHandler startEvent, MyEndEventHandler endEvent)
         {
             await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
@@ -265,6 +256,144 @@ namespace VisualStudioChatGpt.Commands
                 {
                     Console.WriteLine($"请求失败：{response.StatusCode} {response.ErrorMessage}");
                 }
+            });
+        }*/
+        #endregion
+
+
+        #region 请求OpenAI 获取数据
+
+        /// <summary>
+        /// 请求OpenAI 获取数据
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="postData"></param>
+        /// <param name="ltcid"></param> 
+        /// <param name="timeout">默认超时 5秒</param> 
+        /// <returns></returns>
+        internal static async Task OpenAiAsync(string word, MyShowEventHandler showEvent, MyStartEventHandler startEvent, MyEndEventHandler endEvent)
+        {
+            await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                var config = MyConfig.Get();
+                if (string.IsNullOrEmpty(config.apikey))
+                {
+                    MessageBox.Show("请设置OpenAI key");
+
+                    var form = new FormSetUp();
+                    form.StartPosition = FormStartPosition.CenterScreen;
+                    form.Show();
+                    return;
+                }
+
+                var par = new
+                {
+                    model = config.model,
+                    temperature = Convert.ToDouble(config.temperature),
+                    stream = true,
+                    max_tokens = Convert.ToInt32(config.maxtoken),
+                    messages = new List<object> { new { role = "user", content = word } }
+                };
+
+                HttpClientHandler handler = new HttpClientHandler();// 创建HttpClientHandler实例
+                if (!string.IsNullOrEmpty(config.proxy))
+                {
+                    handler.Proxy = new WebProxy(config.proxy);// 设置代理服务器地址和端口
+                }
+                using (HttpClient httpClient = new HttpClient(handler))
+                {
+                    var request = new HttpRequestMessage(HttpMethod.Post, config.apiurl);
+                    request.Content = new StringContent(JsonConvert.SerializeObject(par), Encoding.UTF8);
+                    request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                    if (config.serviceName == ServiceEnum.Azure.ToString())//微软Azure云
+                    {
+                        request.Content.Headers.Add("api-key", $"{config.apikey}");
+                    }
+                    else//OpenAI
+                    {
+                        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", $"{config.apikey}");
+                    }
+
+                    using (HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))//发送请求并获取响应
+                    {
+                        startEvent.Invoke();//开始
+
+                        response.EnsureSuccessStatusCode();
+                        using (Stream responseStream = await response.Content.ReadAsStreamAsync())
+                        using (StreamReader reader = new StreamReader(responseStream, Encoding.UTF8))
+                        {
+                            while (!reader.EndOfStream)//逐行读取响应流
+                            {
+                                string line = await reader.ReadLineAsync();
+                                if (!string.IsNullOrEmpty(line) && line.Contains("content"))
+                                {
+                                    line = line.Remove(0, 5);
+                                    var obj = JsonConvert.DeserializeObject<dynamic>(line);
+                                    var temp = obj["choices"][0]["delta"]["content"].ToString();
+                                    showEvent.Invoke(temp);//插入gpt结果 
+                                    await Task.Delay(1);
+                                }
+                            }
+                        }
+                        endEvent.Invoke();//结束
+                    }
+                }
+
+                #region 注释作废
+
+                //var client = new RestClient(config.apiurl);
+                //if (!string.IsNullOrEmpty(config.proxy))
+                //{
+                //    client.Proxy = new WebProxy(config.proxy);
+                //}
+
+                ////创建请求对象
+                //var request = new RestRequest(Method.POST);
+                //if (config.serviceName == ServiceEnum.Azure.ToString())//微软Azure云
+                //{
+                //    request.AddHeader("api-key", $"{config.apikey}");
+                //}
+                //else//OpenAI
+                //{
+                //    request.AddHeader("Authorization", $"Bearer {config.apikey}");
+                //}
+                //request.AddHeader("Content-Type", "application/json");
+                //request.Timeout = Convert.ToInt32(config.timeout) * 1000;
+                //request.AddJsonBody(par);
+
+
+                //var response = client.Execute(request);//执行请求                                
+                //if (response.IsSuccessful)//检查响应是否成功
+                //{
+                //    var responseStream = new MemoryStream(response.RawBytes);//获取响应内容流                
+                //    using (var streamReader = new StreamReader(responseStream))//创建流式读取器
+                //    {
+                //        startEvent.Invoke();//插入gpt结果
+                //        string line;
+                //        while ((line = streamReader.ReadLine()) != null)
+                //        {
+                //            if (line.Contains("prompt_tokens"))//非流返回
+                //            {
+                //                string content = JsonConvert.DeserializeObject<dynamic>(line)["choices"][0]["message"]["content"];
+                //                showEvent.Invoke(content);//插入gpt结果
+                //            }
+                //            else if (!string.IsNullOrEmpty(line) && line.Contains("content"))//流形式返回
+                //            {
+                //                line = line.Remove(0, 5);
+                //                var obj = JsonConvert.DeserializeObject<dynamic>(line);
+                //                var temp = obj["choices"][0]["delta"]["content"].ToString();
+                //                await Task.Delay(1);
+                //                showEvent.Invoke(temp);//插入gpt结果
+                //            }
+                //        }
+                //        endEvent.Invoke();//插入gpt结果
+                //    }
+                //}
+                //else
+                //{
+                //    Console.WriteLine($"请求失败：{response.StatusCode} {response.ErrorMessage}");
+                //} 
+                #endregion
             });
         }
         #endregion
