@@ -14,6 +14,8 @@
 - 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令：
   
   ![image](https://images001.wangshuyu.top/Images001/2023/0531/165116479.png)
+  
+  <video src="https://images001.wangshuyu.top/Images001/2023/0612/161405182.mp4"></video>
 
 - **补全代码:** 开始编写方法，选择它并要求完成。
 - **查找Bug:** 查找所选方法或代码片段的错误bugs。
