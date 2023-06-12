@@ -132,6 +132,8 @@
     <Content Include="Resources\setup.png" />
     <Content Include="Resources\turbo.png" />
     <Content Include="Resources\vs.png" />
+    <Content Include="Resources\vschatgpt2022.gif" />
+    <Content Include="Resources\vschatgpt2022.mp4" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\FormSetUp.resx">

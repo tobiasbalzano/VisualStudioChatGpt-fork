@@ -10,13 +10,13 @@
 - 我尽量在当天修复bug
 
 
-## 文本编辑器中的功能
-- 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令：
-  
-  ![image](https://images001.wangshuyu.top/Images001/2023/0531/165116479.png)
-  
-  <video src="https://images001.wangshuyu.top/Images001/2023/0612/161405182.mp4"></video>
+## 效果图
+- 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令： 
+- ![image](https://images001.wangshuyu.top/Images001/2023/0531/165116479.png)
+- 演示视频 
+- <video src="https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.mp4" controls="controls" width="400" height="300"></video>
 
+## 文本编辑器中的功能
 - **补全代码:** 开始编写方法，选择它并要求完成。
 - **查找Bug:** 查找所选方法或代码片段的错误bugs。
 - **修复bug:** 修改所选方法或代码片段的错误。
