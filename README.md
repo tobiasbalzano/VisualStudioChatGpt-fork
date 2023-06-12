@@ -13,8 +13,8 @@
 ## 效果图
 - 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令： 
 - ![image](https://images001.wangshuyu.top/Images001/2023/0531/165116479.png)
-- 演示视频 
-- <video src="https://images001.wangshuyu.top/Images001/2023/0612/161405182.mp4" controls="controls" width="400" height="300"></video>
+- 效果动画
+- https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.gif
 
 ## 文本编辑器中的功能
 - **补全代码:** 开始编写方法，选择它并要求完成。
