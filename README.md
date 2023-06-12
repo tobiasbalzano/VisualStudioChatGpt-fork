@@ -51,6 +51,11 @@
 - 微软Azure云申请key地址: [https://learn.microsoft.com/azure/cognitive-services/openai/overview](https://learn.microsoft.com/azure/cognitive-services/openai/overview)
 - 优点: 速度比OpenAI原生快至少一倍,不用搭建梯子
 - 缺点: 申请比较麻烦,需要企业账户
+  
+### 三方兼容OpenAI
+- 比较便宜 不用注册 建议少充值哦
+- [三方兼容OpenAI接口地址,直接看接口文档](https://openai.wangshuyu.top/doc.aspx)
+
 
 ### 说明
 - OpenAI和微软Azure云申请一个即可
