@@ -54,7 +54,7 @@
   
 ### 三方兼容OpenAI
 - 比较便宜 不用注册 建议少充值哦
-- [三方兼容OpenAI接口地址,直接看接口文档](https://openai.wangshuyu.top/doc.aspx)
+- [三方兼容OpenAI接口地址,直接看接口文档](https://doc.wangshuyu.top/doc.aspx)
 
 
 ### 说明
