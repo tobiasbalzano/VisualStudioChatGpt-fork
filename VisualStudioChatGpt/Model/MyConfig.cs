@@ -16,7 +16,9 @@ namespace VisualStudioChatGpt.Model
 {
     public class MyConfig
     {
-        static string key = "MyConfig";
+        /// <summary>
+        /// 配置文件名称
+        /// </summary>
         static string configFileName = "VisualStudioChatGpt.json";
 
         /// <summary>
@@ -34,12 +36,6 @@ namespace VisualStudioChatGpt.Model
                 timeout = "30",
                 apiurl = apiurl,
             };
-            //var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
-            //var store = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
-            //if (store.CollectionExists(key))
-            //{
-            //    entity = JsonConvert.DeserializeObject<MyConfigModel>(store.GetString(key, "Config"));
-            //}
 
             if (File.Exists(getConfigFilePath()))
             {
@@ -68,10 +64,14 @@ namespace VisualStudioChatGpt.Model
             string json = JsonConvert.SerializeObject(entity);
 
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string path = System.IO.Path.Combine(appDataPath, "Microsoft", "VisualStudio")+ "\\"+ configFileName;
+            string path = System.IO.Path.Combine(appDataPath, "Microsoft", "VisualStudio") + "\\" + configFileName;
             File.WriteAllText(getConfigFilePath(), json);
         }
 
+        /// <summary>
+        /// 获取配置文件真实磁盘路径
+        /// </summary>
+        /// <returns></returns>
         private static string getConfigFilePath()
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);

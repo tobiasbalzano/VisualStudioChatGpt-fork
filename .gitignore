@@ -16,8 +16,4 @@ bin-release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
-/.vs/VisualStudioChatGpt/FileContentIndex/0dd4df2c-4aaa-4dce-b543-0acce0474347.vsidx
-/.vs/VisualStudioChatGpt/FileContentIndex/0cb12bf4-a7e7-4141-8567-e6096b107a7d.vsidx
-/.vs/VisualStudioChatGpt/FileContentIndex/6fbbd2de-6c84-44fa-9c3f-94f079b573f0.vsidx
-/.vs/VisualStudioChatGpt/FileContentIndex/8b31e1b4-f3cd-4009-89d7-f70f659dcdaa.vsidx
-/.vs/VisualStudioChatGpt/FileContentIndex/a594addd-ffc4-4f84-88a2-0f075fd68b52.vsidx
+.vs/
