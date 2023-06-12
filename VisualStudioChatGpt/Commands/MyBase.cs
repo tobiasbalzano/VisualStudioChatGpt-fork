@@ -17,7 +17,7 @@ namespace VisualStudioChatGpt.Commands
 {
     internal class MyBase
     {
-        // 定义事件处理器的委托类型
+        //定义事件处理器的委托类型
         internal delegate void MyShowEventHandler(string message);
         internal delegate void MyStartEventHandler();
         internal delegate void MyEndEventHandler();
