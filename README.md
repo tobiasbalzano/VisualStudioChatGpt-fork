@@ -1,9 +1,9 @@
 # Visual Studio ChatGPT
 - 这是一个直接在Visual Studio中添加chatGPT功能的扩展。
 - 您将能够直接通过文本编辑器或通过新的特定工具窗口查阅 chatGPT。
-- Visual Studio 2022: [插件地址](https://marketplace.visualstudio.com/items?itemName=MogoVsixRightMenu1.VisualStudioChatGpt?_blank) 
-- 存储库地址: [Gitee(主库)](https://gitee.com/wangshuyu/visual-studio-chat-gpt?_blank) 
-- 存储库地址: [Github(辅库)](https://github.com/wangshuyu/VisualStudioChatGpt?_blank) 
+- Visual Studio 2022: [插件地址](https://marketplace.visualstudio.com/items?itemName=MogoVsixRightMenu1.VisualStudioChatGpt) {target="_blank"}
+- 存储库地址: [Gitee(主库)](https://gitee.com/wangshuyu/visual-studio-chat-gpt) {target="_blank"}
+- 存储库地址: [Github(辅库)](https://github.com/wangshuyu/VisualStudioChatGpt) {target="_blank"}
 
 ## 说明
 - 在1.0前的预览版本中,插件可能会存在bug,大家有问题可以随时提
@@ -12,9 +12,9 @@
 
 ## 效果图
 - 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令： 
-- ![image](https://images001.wangshuyu.top/Images001/2023/0531/165116479.png)
+- ![image](https://images001.wangshuyu.top/Images001/2023/0531/165116479.png){target="_blank"}
 - 效果动画
-- https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.gif?_blank
+- https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.gif
 
 ## 文本编辑器中的功能
 - **补全代码:** 开始编写方法，选择它并要求完成。
@@ -31,7 +31,7 @@
 ![image](https://images001.wangshuyu.top/Images001/2023/0531/164701930.png)
 - 后端服务: 支持OpenAI和Azure云
 - Api Url: 接口地址, **这个要和后端服务对应上, 因为OpenAI和Azure云验签方式有点小区别**
-- Api Key: 验签的Key,如何申请 [OpenAI](https://beta.openai.com/account/api-keys?_blank)  [Azure云](https://learn.microsoft.com/azure/cognitive-services/openai/overview?_blank) 
+- Api Key: 验签的Key,如何申请 [OpenAI](https://beta.openai.com/account/api-keys)  [Azure云](https://learn.microsoft.com/azure/cognitive-services/openai/overview) 
 - Proxy代理: 代理地址,格式:http://ip:port 例如: http://127.0.0.1:10809
 - MaxToken: 做大返回的tokens数量,不用太大
 - temperature: 热度,模型随机性,建议别超过0.3
@@ -43,12 +43,12 @@
 ### OpenAI申请Key
 - 要使用此工具，必须注册OpenAI API, 并申请可以发者key。
 - 您需要创建并设置一个OpenAI API密钥。 
-- OpenAI申请key地址 [https://beta.openai.com/account/api-keys](https://beta.openai.com/account/api-keys?_blank)
+- OpenAI申请key地址 [https://beta.openai.com/account/api-keys](https://beta.openai.com/account/api-keys)
 - OpenAI官方提供了一个[状态页](https://status.openai.com/)，虽然小故障不怎么显示，但大面积宕机时能看到公告。
-- 如果没有代理,可以考虑使用阿里云函数计算方式,透传OpenAI接口地址哦,[参考项目](https://github.com/dyc87112/OpenAIProxy?_blank)
+- 如果没有代理,可以考虑使用阿里云函数计算方式,透传OpenAI接口地址哦,[参考项目](https://github.com/dyc87112/OpenAIProxy)
 
 ### 微软Azure云申请Key
-- 微软Azure云申请key地址: [https://learn.microsoft.com/azure/cognitive-services/openai/overview](https://learn.microsoft.com/azure/cognitive-services/openai/overview?_blank)
+- 微软Azure云申请key地址: [https://learn.microsoft.com/azure/cognitive-services/openai/overview](https://learn.microsoft.com/azure/cognitive-services/openai/overview)
 - 优点: 速度比OpenAI原生快至少一倍,不用搭建梯子
 - 缺点: 申请比较麻烦,需要企业账户
 
@@ -72,7 +72,7 @@
 - 如果您发现任何错误或意外行为，请发表评论，以便我提供修复。
 
 ## 参考
-- 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio?_blank)
+- 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
 
 ## 历史版本
 ### v0.2.6
