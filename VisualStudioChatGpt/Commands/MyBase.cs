@@ -225,28 +225,46 @@ namespace VisualStudioChatGpt.Commands
 
                     using (HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))//发送请求并获取响应
                     {
-                        startEvent.Invoke();//开始
-
-                        response.EnsureSuccessStatusCode();
-                        using (Stream responseStream = await response.Content.ReadAsStreamAsync())
-                        using (StreamReader reader = new StreamReader(responseStream, Encoding.UTF8))
+                        if (response.IsSuccessStatusCode)
                         {
-                            while (!reader.EndOfStream)//逐行读取响应流
+                            startEvent.Invoke();//开始
+
+                            response.EnsureSuccessStatusCode();
+                            using (Stream responseStream = await response.Content.ReadAsStreamAsync())
+                            using (StreamReader reader = new StreamReader(responseStream, Encoding.UTF8))
                             {
-                                string line = await reader.ReadLineAsync();
-                                if (!string.IsNullOrEmpty(line) && line.Contains("content"))
+                                while (!reader.EndOfStream)//逐行读取响应流
                                 {
-                                    line = line.Remove(0, 5);
-                                    var obj = JsonConvert.DeserializeObject<dynamic>(line);
-                                    var temp = obj["choices"][0]["delta"]["content"].ToString();
-                                    showEvent.Invoke(temp);//插入gpt结果 
-                                    await Task.Delay(1);
+                                    string line = await reader.ReadLineAsync();
+                                    if (!string.IsNullOrEmpty(line) && line.Contains("content"))
+                                    {
+                                        line = line.Remove(0, 5);
+                                        var obj = JsonConvert.DeserializeObject<dynamic>(line);
+                                        var temp = obj["choices"][0]["delta"]["content"].ToString();
+                                        showEvent.Invoke(temp);//插入gpt结果 
+                                        await Task.Delay(1);
+                                    }
                                 }
                             }
+                            endEvent.Invoke();//结束
                         }
-                        endEvent.Invoke();//结束
+                        else
+                        {
+                            string line = await response.Content.ReadAsStringAsync();
+                            var obj = JsonConvert.DeserializeObject<dynamic>(line);
+                            var message = obj["error"]["message"].ToString();
+                            if (string.IsNullOrEmpty(message))
+                            {
+                                message = obj["error"]["code"].ToString();
+                            }
+                            MessageBox.Show(message);
+
+                            var form = new FormSetUp();
+                            form.StartPosition = FormStartPosition.CenterScreen;
+                            form.Show();
+                        }
                     }
-                }                
+                }
             });
         }
         #endregion
