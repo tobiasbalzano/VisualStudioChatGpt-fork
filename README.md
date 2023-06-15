@@ -80,6 +80,9 @@
 - 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
 
 ## 历史版本
+### v0.2.7--v0.2.8
+- 增加秘钥无效异常提示验证功能
+
 ### v0.2.6
 - 继续修复关于配置文件存贮后,重启系统丢失问题,本次应该完整修复了
 
