@@ -81,6 +81,10 @@
 - 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
 
 ## 历史版本
+### v0.3.0
+- 对话入口改自建Chat地址,有人反馈不会翻墙
+- 设置增加自建api链接,价格和openai一致,$0.002/1000 token
+
 ### v0.2.7--v0.2.8
 - 增加秘钥无效异常提示验证功能
 
