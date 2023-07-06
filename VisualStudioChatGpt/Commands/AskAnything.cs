@@ -15,7 +15,8 @@ namespace VisualStudioChatGpt.Commands
     {
         internal override void VirHandler(object sender, EventArgs e)
         {
-            Process.Start("https://chat.openai.com/");
+            //Process.Start("https://chat.openai.com/");
+            Process.Start("https://www.wangshuyu.top/");
             //base.VirHandler(sender, e);
         }
     }

@@ -39,7 +39,7 @@
 - TimeOut(秒):超时时长
 
 
-## 认证
+## Api接口
 ### OpenAI申请Key
 - 要使用此工具，必须注册OpenAI API, 并申请可以发者key。
 - 您需要创建并设置一个OpenAI API密钥。 
@@ -52,9 +52,10 @@
 - 优点: 速度比OpenAI原生快至少一倍,不用搭建梯子
 - 缺点: 申请比较麻烦,需要企业账户
   
-### 三方兼容OpenAI
-- 比较便宜 不用注册 建议少充值哦
-- [三方兼容OpenAI接口地址,直接看接口文档](https://doc.wangshuyu.top/apidoc)
+### 自建接口Api
+- 和openai一样价格 少量充值使用
+- [Api接口文档](https://www.wangshuyu.top/#/ApiDoc)
+- [Chat聊天工具](https://www.wangshuyu.top/#/Chat)
 
 
 ### 说明
