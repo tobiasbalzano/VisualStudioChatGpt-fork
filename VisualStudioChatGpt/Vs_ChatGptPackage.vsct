@@ -67,18 +67,18 @@
 					<LocCanonicalName>.guidVisualStudioChatGptPackage.AddTests</LocCanonicalName>
 				</Strings>
 			</Button>
-			<Button guid="guidVisualStudioChatGptPackage" id="AskAnything" priority="0x0009" type="Button">
-				<Icon guid="guidVisualStudioChatGptPackageAskAnythingIcon" id="askAnythingIcon" />
-				<Strings>
-					<ButtonText>对话提问</ButtonText>
-					<LocCanonicalName>.guidVisualStudioChatGptPackage.AskAnything</LocCanonicalName>
-				</Strings>
-			</Button>
 			<Button guid="guidVisualStudioChatGptPackage" id="Translate" priority="0x0011" type="Button">
 				<Icon guid="guidVisualStudioChatGptPackageTranslateIcon" id="TranslateIcon" />
 				<Strings>
 					<ButtonText>翻译</ButtonText>
 					<LocCanonicalName>.guidVisualStudioChatGptPackage.Translate</LocCanonicalName>
+				</Strings>
+			</Button>
+			<Button guid="guidVisualStudioChatGptPackage" id="AskAnything" priority="0x0009" type="Button">
+				<Icon guid="guidVisualStudioChatGptPackageAskAnythingIcon" id="askAnythingIcon" />
+				<Strings>
+					<ButtonText>对话聊天</ButtonText>
+					<LocCanonicalName>.guidVisualStudioChatGptPackage.AskAnything</LocCanonicalName>
 				</Strings>
 			</Button>
 			<Button guid="guidVisualStudioChatGptPackage" id="SetUp" priority="0x0100" type="Button">
