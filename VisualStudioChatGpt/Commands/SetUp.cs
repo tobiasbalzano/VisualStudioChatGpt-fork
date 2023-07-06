@@ -19,11 +19,10 @@ namespace VisualStudioChatGpt.Commands
     {
         internal override void VirHandler(object sender, EventArgs e)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread(); 
 
-            var form = new FormSetUp();
-            form.StartPosition = FormStartPosition.CenterScreen;
-            form.Show();
+            FormSetUp.Instance.Show();
+            FormSetUp.Instance.Activate();
         }
     }
 }

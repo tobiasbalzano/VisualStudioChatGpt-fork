@@ -189,9 +189,8 @@ namespace VisualStudioChatGpt.Commands
                 {
                     MessageBox.Show("请设置OpenAI key");
 
-                    var form = new FormSetUp();
-                    form.StartPosition = FormStartPosition.CenterScreen;
-                    form.Show();
+                    FormSetUp.Instance.Show();
+                    FormSetUp.Instance.Activate();
                     return;
                 }
 
@@ -259,9 +258,8 @@ namespace VisualStudioChatGpt.Commands
                             }
                             MessageBox.Show(message);
 
-                            var form = new FormSetUp();
-                            form.StartPosition = FormStartPosition.CenterScreen;
-                            form.Show();
+                            FormSetUp.Instance.Show();
+                            FormSetUp.Instance.Activate();
                         }
                     }
                 }

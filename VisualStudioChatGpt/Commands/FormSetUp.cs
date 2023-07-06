@@ -18,6 +18,21 @@ namespace VisualStudioChatGpt.Commands
 {
     public partial class FormSetUp : Form
     {
+        private static FormSetUp instance;
+
+        public static FormSetUp Instance
+        {
+            get
+            {
+                if (instance == null || instance.IsDisposed)
+                {
+                    instance = new FormSetUp();
+                    instance.StartPosition = FormStartPosition.CenterScreen;
+                }
+                return instance;
+            }
+        }
+
         public FormSetUp()
         {
             InitializeComponent();
@@ -84,7 +99,12 @@ namespace VisualStudioChatGpt.Commands
 
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/wangshuyu/VisualStudioChatGpt#%E8%AE%BE%E7%BD%AE%E5%8A%9F%E8%83%BD");
+            Process.Start("https://gitee.com/wangshuyu/visual-studio-chat-gpt#%E8%AE%BE%E7%BD%AE%E5%8A%9F%E8%83%BD");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.wangshuyu.top/#/ApiDoc");
         }
     }
 }
