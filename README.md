@@ -54,8 +54,8 @@
   
 ### 自建接口Api
 - 和openai一样价格 少量充值使用
-- [Api接口文档](https://www.wangshuyu.top/#/ApiDoc)
-- [Chat聊天工具](https://www.wangshuyu.top/#/Chat)
+- [Api接口文档](https://chat.wangshuyu.top/#/ApiDoc)
+- [Chat聊天工具](https://chat.wangshuyu.top/)
 
 
 ### 说明
