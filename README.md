@@ -53,6 +53,7 @@
 - 缺点: 申请比较麻烦,需要企业账户
   
 ### 自建接口Api
+- 完全兼容OpenAI接口模式
 - 和openai一样价格 少量充值使用
 - [Api接口文档](https://chat.wangshuyu.top/#/ApiDoc)
 - [Chat聊天工具](https://chat.wangshuyu.top/)
@@ -81,6 +82,10 @@
 - 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
 
 ## 历史版本
+### v0.3.1
+- 调整聊天网址
+- 调整查询Prompt话术
+
 ### v0.3.0
 - 对话入口改自建Chat地址,有人反馈不会翻墙
 - 设置增加自建api链接,价格和openai一致,$0.002/1000 token
