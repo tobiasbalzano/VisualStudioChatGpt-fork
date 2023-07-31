@@ -16,7 +16,7 @@ namespace VisualStudioChatGpt.Model
         internal static string RepairBug = $"修复代码错误\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码\r\n\r\n";
         internal static string Optimize = $"优化压缩代码\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码\r\n\r\n";
         internal static string Explain = $"解释说明\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码的简短解释说明\r\n\r\n";
-        internal static string AddSummary = $"添加方法Summary说明\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回C#格式的AddSummary\r\n不需要返回代码块\r\n\r\n";
+        internal static string AddSummary = $"任务:你是高级软件开发者\r\n角色:高级软件开发者\r\n编程语言:C#\r\n关键词:代码\r\n需求:写Summary说明注释,不需要返回代码块,只返回Summary结构和说明\r\n格式示例:\r\n/// <summary>\r\n///\r\n/// </summary>\r\n/// <param name=“obj”></param>\r\n/// <returns></returns>\r\n\r\n代码";
         internal static string AddTest = $"生成单元测试\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码\r\n\r\n";
         internal static string Translate = $"中英文互译,只返回译文结果:\r\n";
     }
