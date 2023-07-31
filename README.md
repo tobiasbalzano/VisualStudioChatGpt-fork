@@ -82,6 +82,9 @@
 - 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
 
 ## 历史版本
+### v0.3.2
+- 调整查询Prompt话术
+- 
 ### v0.3.1
 - 调整聊天网址
 - 调整查询Prompt话术
