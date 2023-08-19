@@ -29,13 +29,13 @@ namespace VisualStudioChatGpt.Commands
         internal override void VirStart()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            this.insertPoint.Insert("\r\n//");
+            this.insertPoint.Insert("\r\n/*");
         }
 
         internal override void VirEnd()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            this.insertPoint.Insert("\r\n");
+            this.insertPoint.Insert("*/\r\n");
             _ = SimulateCtrlKCtrlDAsync();
         }
     }

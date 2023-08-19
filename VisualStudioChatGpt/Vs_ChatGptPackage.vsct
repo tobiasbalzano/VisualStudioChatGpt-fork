@@ -67,6 +67,13 @@
 					<LocCanonicalName>.guidVisualStudioChatGptPackage.AddTests</LocCanonicalName>
 				</Strings>
 			</Button>
+			<Button guid="guidVisualStudioChatGptPackage" id="Refactoring" priority="0x0012" type="Button">
+				<Icon guid="guidVisualStudioChatGptPackageRefactoringIcon" id="RefactoringIcon" />
+				<Strings>
+					<ButtonText>重构代码</ButtonText>
+					<LocCanonicalName>.guidVisualStudioChatGptPackage.Refactoring</LocCanonicalName>
+				</Strings>
+			</Button>
 			<Button guid="guidVisualStudioChatGptPackage" id="Translate" priority="0x0011" type="Button">
 				<Icon guid="guidVisualStudioChatGptPackageTranslateIcon" id="TranslateIcon" />
 				<Strings>
@@ -99,6 +106,7 @@
 			<Bitmap guid="guidVisualStudioChatGptPackageAddSummaryIcon" href="Resources\addSummary.png" usedList="addSummaryIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageAskAnythingIcon" href="Resources\askAnything.png" usedList="askAnythingIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageSetUpIcon" href="Resources\SetUp.png" usedList="SetUpIcon"/>
+			<Bitmap guid="guidVisualStudioChatGptPackageRefactoringIcon" href="Resources\translate.png" usedList="RefactoringIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageTranslateIcon" href="Resources\translate.png" usedList="TranslateIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageRepairBugIcon" href="Resources\repair.png" usedList="RepairBugIcon"/>
 		</Bitmaps>
@@ -114,6 +122,7 @@
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="AddSummary" mod1="ALT" key1="6" editor="guidVSStd97" />
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="AddTests" mod1="ALT" key1="7" editor="guidVSStd97" />
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="AskAnything" mod1="ALT" key1="8" editor="guidVSStd97" />
+		<KeyBinding guid="guidVisualStudioChatGptPackage" id="Refactoring" mod1="ALT" key1="9" editor="guidVSStd97" />
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="Translate" mod1="ALT" key1="9" editor="guidVSStd97" />
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="SetUp" mod1="ALT" key1="R" editor="guidVSStd97" />
 	</KeyBindings>
@@ -163,6 +172,10 @@
 			<Parent guid="guidVisualStudioChatGptPackage" id="MyGroupForCommands"/>
 		</CommandPlacement>
 
+		<CommandPlacement guid="guidVisualStudioChatGptPackage" id="Refactoring" priority="0x0012" >
+			<Parent guid="guidVisualStudioChatGptPackage" id="MyGroupForCommands"/>
+		</CommandPlacement>
+
 		<CommandPlacement guid="guidVisualStudioChatGptPackage" id="Translate" priority="0x0011" >
 			<Parent guid="guidVisualStudioChatGptPackage" id="MyGroupForCommands"/>
 		</CommandPlacement>
@@ -187,6 +200,7 @@
 			<IDSymbol name="AddSummary" value="0x0007" />
 			<IDSymbol name="AddTests" value="0x0008" />
 			<IDSymbol name="AskAnything" value="0x0009" />
+			<IDSymbol name="Refactoring" value="0x0012" />
 			<IDSymbol name="Translate" value="0x0011" />
 			<IDSymbol name="SetUp" value="0x0100" />
 		</GuidSymbol>
@@ -219,6 +233,9 @@
 		</GuidSymbol>
 		<GuidSymbol name="guidVisualStudioChatGptPackageAskAnythingIcon" value="{C12A8ED0-FBE5-4815-A3FB-2CB73AB06EBA}">
 			<IDSymbol name="askAnythingIcon" value="1" />
+		</GuidSymbol>
+		<GuidSymbol name="guidVisualStudioChatGptPackageRefactoringIcon" value="{C12A8ED0-FBE5-4815-A3FB-2CB73AB06EE2}">
+			<IDSymbol name="RefactoringIcon" value="1" />
 		</GuidSymbol>
 		<GuidSymbol name="guidVisualStudioChatGptPackageTranslateIcon" value="{C12A8ED0-FBE5-4815-A3FB-2CB73AB06EEF}">
 			<IDSymbol name="TranslateIcon" value="1" />
