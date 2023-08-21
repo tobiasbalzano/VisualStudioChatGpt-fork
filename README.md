@@ -12,7 +12,7 @@
 
 ## 效果图
 - 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令： 
-- ![image](https://images001.wangshuyu.top/Images001/2023/0531/165116479.png)
+- ![image](https://images001.wangshuyu.top/Images001/2023/0821/143403339.png)
 - 效果动画
 - https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.gif
 
@@ -24,7 +24,8 @@
 - **注释说明:** 编写所选方法的说明。 
 - **添加方法Summary:** 添加 C# 方法的摘要Summary。- 
 - **添加单元测试:** 为所选方法创建单元测试。
-- **对话提问:** 直接跳转到chat.openai.com。
+- **重构代码:** 重构代码,实验性的,可以尝试使用。
+- **AI对话:** 直接跳转到ChatGpt对话网页版。
 - **设置:** 设置OpenAI相关配置信息。
 
 ## 设置功能 
@@ -76,12 +77,12 @@
 - 由于此扩展取决于 OpenAI 提供的 API，因此它们可能会进行一些更改，从而影响此扩展的操作，恕不另行通知。
 - 由于此扩展取决于 OpenAI 提供的 API，因此生成的响应可能不是预期的。
 - 响应的速度和可用性直接取决于OpenAI提供的API。
-- 如果您发现任何错误或意外行为，请发表评论，以便我提供修复。
-
-## 参考
-- 非常感谢作者的无私奉献： [https://github.com/jeffdapaz/VisualChatGPTStudio](https://github.com/jeffdapaz/VisualChatGPTStudio)
+- 如果您发现任何错误或意外行为，请发表评论，以便我提供修复。 
 
 ## 历史版本
+### v0.3.4
+- 新增重构代码功能,实验性
+- 
 ### v0.3.2 - v0.3.3
 - 调整查询Prompt话术
 - 
