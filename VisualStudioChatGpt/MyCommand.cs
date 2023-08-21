@@ -47,9 +47,9 @@ namespace VisualStudioChatGpt
             AddEvent(0x0005, new Explain().VirHandler, commandService);//写注释说明 
             AddEvent(0x0007, new AddSummary().VirHandler, commandService);//为方法写Summary注释
             AddEvent(0x0008, new AddTest().VirHandler, commandService);//单元测试 
-            AddEvent(0x0009, new AskAnything().VirHandler, commandService);//提问 
+            AddEvent(0x0099, new AskAnything().VirHandler, commandService);//提问 
             AddEvent(0x0012, new Refactoring().VirHandler, commandService);//重构点
-            AddEvent(0x0011, new Translate().VirHandler, commandService);//翻译
+            AddEvent(0x0090, new Translate().VirHandler, commandService);//翻译
             AddEvent(0x0100, new SetUp().VirHandler, commandService);//设置
         }
 

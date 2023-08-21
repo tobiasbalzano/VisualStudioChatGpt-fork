@@ -70,21 +70,21 @@
 			<Button guid="guidVisualStudioChatGptPackage" id="Refactoring" priority="0x0012" type="Button">
 				<Icon guid="guidVisualStudioChatGptPackageRefactoringIcon" id="RefactoringIcon" />
 				<Strings>
-					<ButtonText>重构代码</ButtonText>
+					<ButtonText>重构代码(实验)</ButtonText>
 					<LocCanonicalName>.guidVisualStudioChatGptPackage.Refactoring</LocCanonicalName>
 				</Strings>
 			</Button>
-			<Button guid="guidVisualStudioChatGptPackage" id="Translate" priority="0x0011" type="Button">
+			<Button guid="guidVisualStudioChatGptPackage" id="Translate" priority="0x0090" type="Button">
 				<Icon guid="guidVisualStudioChatGptPackageTranslateIcon" id="TranslateIcon" />
 				<Strings>
 					<ButtonText>翻译</ButtonText>
 					<LocCanonicalName>.guidVisualStudioChatGptPackage.Translate</LocCanonicalName>
 				</Strings>
 			</Button>
-			<Button guid="guidVisualStudioChatGptPackage" id="AskAnything" priority="0x0009" type="Button">
+			<Button guid="guidVisualStudioChatGptPackage" id="AskAnything" priority="0x0099" type="Button">
 				<Icon guid="guidVisualStudioChatGptPackageAskAnythingIcon" id="askAnythingIcon" />
 				<Strings>
-					<ButtonText>对话聊天</ButtonText>
+					<ButtonText>AI对话(实验)</ButtonText>
 					<LocCanonicalName>.guidVisualStudioChatGptPackage.AskAnything</LocCanonicalName>
 				</Strings>
 			</Button>
@@ -121,9 +121,9 @@
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="Explain" mod1="ALT" key1="5" editor="guidVSStd97" />
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="AddSummary" mod1="ALT" key1="6" editor="guidVSStd97" />
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="AddTests" mod1="ALT" key1="7" editor="guidVSStd97" />
-		<KeyBinding guid="guidVisualStudioChatGptPackage" id="AskAnything" mod1="ALT" key1="8" editor="guidVSStd97" />
-		<KeyBinding guid="guidVisualStudioChatGptPackage" id="Refactoring" mod1="ALT" key1="9" editor="guidVSStd97" />
-		<KeyBinding guid="guidVisualStudioChatGptPackage" id="Translate" mod1="ALT" key1="9" editor="guidVSStd97" />
+		<KeyBinding guid="guidVisualStudioChatGptPackage" id="Refactoring" mod1="ALT" key1="8" editor="guidVSStd97" />
+		<KeyBinding guid="guidVisualStudioChatGptPackage" id="AskAnything" mod1="ALT" key1="D" editor="guidVSStd97" />
+		<KeyBinding guid="guidVisualStudioChatGptPackage" id="Translate" mod1="ALT" key1="F" editor="guidVSStd97" />
 		<KeyBinding guid="guidVisualStudioChatGptPackage" id="SetUp" mod1="ALT" key1="R" editor="guidVSStd97" />
 	</KeyBindings>
 
@@ -168,7 +168,7 @@
 		</CommandPlacement>
 
 
-		<CommandPlacement guid="guidVisualStudioChatGptPackage" id="AskAnything" priority="0x0009" >
+		<CommandPlacement guid="guidVisualStudioChatGptPackage" id="AskAnything" priority="0x0099" >
 			<Parent guid="guidVisualStudioChatGptPackage" id="MyGroupForCommands"/>
 		</CommandPlacement>
 
@@ -176,7 +176,7 @@
 			<Parent guid="guidVisualStudioChatGptPackage" id="MyGroupForCommands"/>
 		</CommandPlacement>
 
-		<CommandPlacement guid="guidVisualStudioChatGptPackage" id="Translate" priority="0x0011" >
+		<CommandPlacement guid="guidVisualStudioChatGptPackage" id="Translate" priority="0x0090" >
 			<Parent guid="guidVisualStudioChatGptPackage" id="MyGroupForCommands"/>
 		</CommandPlacement>
 
@@ -199,9 +199,9 @@
 			<IDSymbol name="Explain" value="0x0005" />
 			<IDSymbol name="AddSummary" value="0x0007" />
 			<IDSymbol name="AddTests" value="0x0008" />
-			<IDSymbol name="AskAnything" value="0x0009" />
+			<IDSymbol name="AskAnything" value="0x0099" />
 			<IDSymbol name="Refactoring" value="0x0012" />
-			<IDSymbol name="Translate" value="0x0011" />
+			<IDSymbol name="Translate" value="0x0090" />
 			<IDSymbol name="SetUp" value="0x0100" />
 		</GuidSymbol>
 

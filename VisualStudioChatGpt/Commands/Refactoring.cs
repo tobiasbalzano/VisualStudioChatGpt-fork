@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,14 @@ namespace VisualStudioChatGpt.Commands
             ThreadHelper.ThrowIfNotOnUIThread();
 
             var selectedTex = GetSelectedTextAsync().Result;
+            if (!string.IsNullOrEmpty(selectedTex))
+            {
+                var obj = FormRefactoring.Instance;
+                obj.SelectedText = selectedTex;
+                obj.Show();
+                obj.Activate();
+            }
 
-            var obj = FormRefactoring.Instance;
-            obj.SelectedText= selectedTex;
-            obj.Show();
-            obj.Activate();
 
             //await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             //{

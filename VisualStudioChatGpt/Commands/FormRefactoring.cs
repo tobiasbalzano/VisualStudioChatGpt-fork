@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using VisualStudioChatGpt.Model;
 using static VisualStudioChatGpt.Commands.MyBase;
 using MarkdownSharp;
+using System.Runtime.Remoting.Messaging;
 
 namespace VisualStudioChatGpt.Commands
 {
@@ -27,6 +28,11 @@ namespace VisualStudioChatGpt.Commands
         private static FormRefactoring instance;
 
         public string SelectedText { get; set; }
+
+        private int index = 0;
+
+        private List<Messages> messages { get; set; }
+        private string tempContent = "";
 
         public static FormRefactoring Instance
         {
@@ -44,32 +50,107 @@ namespace VisualStudioChatGpt.Commands
         public FormRefactoring()
         {
             InitializeComponent();
+            messages = new List<Messages>();
+            txt_a.Padding = new Padding(10, 10, 10, 10);
         }
 
-        private void FormRefactoring_Load(object sender, EventArgs e)
+        private async void FormRefactoring_Load(object sender, EventArgs e)
         {
+            this.txt_a.Text = "思考中.....";
+
             this.txt_q.Text = $"{TypeModel.Refactoring}{SelectedText}";
+
+            tempContent = "";
+            await OpenAiAsync(this.txt_q.Text, ShowMessage);
+            AppendTextColorful("\r\n\r\n", Color.Black);
+            messages.Add(new Messages() { role = "user", content = tempContent });
+
+            this.txt_q.Text = "";
+            SetScroll();
+            btn_tijiao.Enabled = true;
         }
 
-        private async void button1_Click(object sender, EventArgs e)//提交问题
+        private async void btn_tijiao_Click(object sender, EventArgs e)//提交问题
         {
-            txt_a.Text += "问题:\r\n";
-            txt_a.Text += this.txt_q.Text.Trim() + "\r\n\r\n";
-            txt_a.Text += "答案:\r\n";
+            btn_tijiao.Enabled = false;
+
+            index = 0;
+            var q = this.txt_q.Text.Trim();
+            AppendTextColorful("问题", Color.Red, true);
+            AppendTextColorful($"{q}", Color.Black);
+            messages.Add(new Messages() { role = "user", content = q });
+            SetScroll();
+
+            tempContent = "";
+            AppendTextColorful("答案:", Color.Red, true);
             await OpenAiAsync(this.txt_q.Text, ShowMessage);
-            txt_a.Text += "\r\n\r\n=======================================================================================================\r\n\r\n";
+            AppendTextColorful("\r\n\r\n", Color.Black);
+            messages.Add(new Messages() { role = "user", content = tempContent });
+
             this.txt_q.Text = "";
+            SetScroll();
+            btn_tijiao.Enabled = true;
         }
 
         /// <summary>
-        /// 插入代码
+        /// 显示消息 换行
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">要显示的消息</param>
         internal void ShowMessage(string message)
         {
-            txt_a.Text += message;
+            if (index == 0)
+            {
+                this.txt_a.Text = "";
+            }
+            if (index % 20 == 0)
+            {
+                SetScroll();
+            }
+            AppendTextColorful(message, Color.Black, false, false);
+            tempContent += message;
+            index++;
         }
 
+        /// <summary>
+        /// 设置滚动条位置
+        /// </summary>
+        private void SetScroll()
+        {
+            txt_a.SelectionStart = txt_a.Text.Length + 2000;
+            txt_a.ScrollToCaret();
+        }
+
+        /// <summary>
+        /// RichTextBox 追加颜色字体
+        /// </summary> 
+        /// <param name="text"></param>
+        /// <param name="color"></param>
+        public void AppendTextColorful(string text, Color color, bool bold = false, bool wrap = true)
+        {
+            if (wrap)
+            {
+                text += "\r\n";
+            }
+            var obj = this.txt_a;
+            obj.SelectionStart = obj.TextLength;
+            obj.SelectionLength = 0;
+            obj.SelectionColor = color;
+            if (bold)
+            {
+                obj.SelectionFont = new Font("宋体", 12f, FontStyle.Bold);
+            }
+            obj.AppendText(text);
+            obj.SelectionColor = obj.ForeColor;
+        }
+
+
+        #region Openai请求
+
+        /// <summary>
+        /// 异步打开OpenAI
+        /// </summary>
+        /// <param name="word">要发送给OpenAI的单词</param>
+        /// <param name="showEvent">显示事件处理程序</param>
         internal async Task OpenAiAsync(string word, MyShowEventHandler showEvent)
         {
             await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
@@ -152,5 +233,12 @@ namespace VisualStudioChatGpt.Commands
                 }
             });
         }
+        #endregion
+    }
+
+    public class Messages
+    {
+        public string role { get; set; }
+        public string content { get; set; }
     }
 }
