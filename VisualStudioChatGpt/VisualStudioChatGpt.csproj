@@ -131,6 +131,7 @@
     <Content Include="Resources\customBefore.png" />
     <Content Include="Resources\customReplace.png" />
     <Content Include="Resources\explain.png" />
+    <Content Include="Resources\Refactoring.png" />
     <Content Include="Resources\translate.png" />
     <Content Include="Resources\findBugs.png" />
     <Content Include="Resources\garbage.png" />

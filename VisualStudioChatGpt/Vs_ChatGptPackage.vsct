@@ -106,7 +106,7 @@
 			<Bitmap guid="guidVisualStudioChatGptPackageAddSummaryIcon" href="Resources\addSummary.png" usedList="addSummaryIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageAskAnythingIcon" href="Resources\askAnything.png" usedList="askAnythingIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageSetUpIcon" href="Resources\SetUp.png" usedList="SetUpIcon"/>
-			<Bitmap guid="guidVisualStudioChatGptPackageRefactoringIcon" href="Resources\translate.png" usedList="RefactoringIcon"/>
+			<Bitmap guid="guidVisualStudioChatGptPackageRefactoringIcon" href="Resources\Refactoring.png" usedList="RefactoringIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageTranslateIcon" href="Resources\translate.png" usedList="TranslateIcon"/>
 			<Bitmap guid="guidVisualStudioChatGptPackageRepairBugIcon" href="Resources\repair.png" usedList="RepairBugIcon"/>
 		</Bitmaps>

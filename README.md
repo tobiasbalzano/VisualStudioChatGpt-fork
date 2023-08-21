@@ -12,7 +12,7 @@
 
 ## 效果图
 - 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令： 
-- ![image](https://images001.wangshuyu.top/Images001/2023/0821/143403339.png)
+- ![image](https://images001.wangshuyu.top/Images001/2023/0821/151003346.png)
 - 效果动画
 - https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.gif
 

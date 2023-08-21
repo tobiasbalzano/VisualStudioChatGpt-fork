@@ -116,8 +116,14 @@ namespace VisualStudioChatGpt.Commands
         /// </summary>
         private void SetScroll()
         {
-            txt_a.SelectionStart = txt_a.Text.Length + 2000;
-            txt_a.ScrollToCaret();
+            try
+            {
+                txt_a.SelectionStart = txt_a.Text.Length + 2000;
+                txt_a.ScrollToCaret();
+            }
+            catch  
+            { 
+            }
         }
 
         /// <summary>
@@ -127,20 +133,26 @@ namespace VisualStudioChatGpt.Commands
         /// <param name="color"></param>
         public void AppendTextColorful(string text, Color color, bool bold = false, bool wrap = true)
         {
-            if (wrap)
+            try
             {
-                text += "\r\n";
+                if (wrap)
+                {
+                    text += "\r\n";
+                }
+                var obj = this.txt_a;
+                obj.SelectionStart = obj.TextLength;
+                obj.SelectionLength = 0;
+                obj.SelectionColor = color;
+                if (bold)
+                {
+                    obj.SelectionFont = new Font("宋体", 12f, FontStyle.Bold);
+                }
+                obj.AppendText(text);
+                obj.SelectionColor = obj.ForeColor;
             }
-            var obj = this.txt_a;
-            obj.SelectionStart = obj.TextLength;
-            obj.SelectionLength = 0;
-            obj.SelectionColor = color;
-            if (bold)
-            {
-                obj.SelectionFont = new Font("宋体", 12f, FontStyle.Bold);
+            catch 
+            { 
             }
-            obj.AppendText(text);
-            obj.SelectionColor = obj.ForeColor;
         }
 
 
