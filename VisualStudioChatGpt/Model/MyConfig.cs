@@ -1,33 +1,25 @@
-﻿using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vs_ChatGpt.Model;
-using EnvDTE;
-using Microsoft.VisualStudio.Shell.Settings;
-using Microsoft.VisualStudio.Settings;
 
 namespace VisualStudioChatGpt.Model
 {
     public class MyConfig
     {
         /// <summary>
-        /// 配置文件名称
+        /// Configuration file name
         /// </summary>
         static string configFileName = "VisualStudioChatGpt.json";
 
         /// <summary>
-        /// 读取配置文件
+        /// Read the configuration file
         /// </summary>
         /// <returns></returns>
         public static MyConfigModel Get()
         {
-            var apiurl = "https://api.openai.com/v1/chat/completions";//默认OpenAI
+            var apiurl = "https://api.openai.com/v1/chat/completions"; // Default to OpenAI
             var entity = new MyConfigModel()
             {
                 model = "gpt-3.5-turbo",
@@ -55,7 +47,7 @@ namespace VisualStudioChatGpt.Model
         }
 
         /// <summary>
-        /// 保存配置文件
+        /// Save the configuration file
         /// </summary>
         /// <param name="entity"></param>
         public static void Set(MyConfigModel entity)
@@ -69,7 +61,7 @@ namespace VisualStudioChatGpt.Model
         }
 
         /// <summary>
-        /// 获取配置文件真实磁盘路径
+        /// Get the real disk path of the configuration file
         /// </summary>
         /// <returns></returns>
         private static string getConfigFilePath()

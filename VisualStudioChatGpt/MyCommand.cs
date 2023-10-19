@@ -1,20 +1,7 @@
-﻿
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
+﻿using Microsoft.VisualStudio.Shell;
 using System;
 using System.ComponentModel.Design;
-using System.Globalization;
 using Task = System.Threading.Tasks.Task;
-using EnvDTE;
-using EnvDTE80;
-using Microsoft.VisualStudio.Editor;
-using Microsoft.VisualStudio.TextManager.Interop;
-using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.ComponentModelHost;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 using VisualStudioChatGpt.Commands;
 
 namespace VisualStudioChatGpt

@@ -1,60 +1,53 @@
-﻿using EnvDTE;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VisualStudioChatGpt.Model
+﻿namespace VisualStudioChatGpt.Model
 {
     internal class TypeModel
     {
-        internal static string Message = "请选择代码块后在执行此操作!";
+        internal static string Message = "Please select a code block before performing this operation!";
 
-        internal static string Complete = $"补全代码\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码\r\n\r\n";
-        internal static string FindBug = $"查找代码错误\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码错误说明和代码行号\r\n没有错误,直接返回\"代码没有错误\"\r\n\r\n";
-        internal static string RepairBug = $"修复代码错误\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码\r\n\r\n";
-        internal static string Optimize = $"优化压缩代码\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码\r\n\r\n";
-        internal static string Explain = $"解释说明\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码的简短解释说明\r\n要求: 每句话末尾增加换行符\r\n\r\n";
-        internal static string AddSummary = $"任务:你是高级软件开发者\r\n角色:高级软件开发者\r\n编程语言:C#\r\n关键词:代码\r\n需求:写Summary说明注释,不需要返回代码块,只返回Summary结构和说明,中文回复\r\n格式示例:\r\n/// <summary>\r\n///\r\n/// </summary>\r\n/// <param name=“obj”></param>\r\n/// <returns></returns>\r\n\r\n代码";
-        internal static string AddTest = $"生成单元测试\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n只返回代码\r\n\r\n";
-        internal static string Translate = $"中英文互译,只返回译文结果:\r\n";
-        internal static string Refactoring = $"重构以下代码,并给出重构理由,尽量少使用类似字符+=消耗性能操作\r\n你是一个经验丰富的.NET高级开发人员,简体中文\r\n";
+        internal static string Complete = $"Complete code\r\nYou are an experienced .NET senior developer, \r\nReturn code only\r\n\r\n";
+        internal static string FindBug = $"Find code errors\r\nYou are an experienced .NET senior developer, \r\nOnly return error description and line number\r\nIf no errors, directly return \"No errors in code\"\r\n\r\n";
+        internal static string RepairBug = $"Fix code errors\r\nYou are an experienced .NET senior developer, \r\nOnly return code\r\n\r\n";
+        internal static string Optimize = $"Optimize and compress code\r\nYou are an experienced .NET senior developer, \r\nOnly return code\r\n\r\n";
+        internal static string Explain = $"Explain\r\nYou are an experienced .NET senior developer, \r\nOnly return a brief explanation of the code\r\nRequirement: Add a newline at the end of each sentence\r\n\r\n";
+        internal static string AddSummary = $"Task: You are a senior software developer\r\nRole: Senior software developer\r\nProgramming language: C#\r\nKeywords: code\r\nRequirement: Write Summary comments, no need to return code block, only return Summary structure and description\r\nExample format:\r\n/// <summary>\r\n///\r\n/// </summary>\r\n/// <param name=“obj”></param>\r\n/// <returns></returns>\r\n\r\nCode";
+        internal static string AddTest = $"Generate unit tests\r\nYou are an experienced .NET senior developer, \r\nOnly return code\r\n\r\n";
+        internal static string Translate = $"Chinese-English translation, only return translation results:\r\n";
+        internal static string Refactoring = $"Refactor the following code, and give reasons for the refactoring, try to minimize the use of operations like character += which consume performance\r\nYou are an experienced .NET senior developer, \r\n";
     }
 
     /// <summary>
-    /// 插入位置
+    /// Insert location
     /// </summary>
     internal enum InsertPointEnum
     {
         /// <summary>
-        /// 选择代码前插入
+        /// Insert before selected code
         /// </summary>
         Before = 0,
 
         /// <summary>
-        /// 选择代码后插入
+        /// Insert after selected code
         /// </summary>
         After = 1,
 
         /// <summary>
-        /// 替换选择代码
+        /// Replace selected code
         /// </summary>
         Replace = 2
     }
 
     /// <summary>
-    /// 服务
+    /// Service
     /// </summary>
     internal enum ServiceEnum
     {
         /// <summary>
-        /// OpenAI原生服务
+        /// Native OpenAI service
         /// </summary>
         OpenAI = 0,
 
         /// <summary>
-        /// 微软Azure云
+        /// Microsoft Azure cloud
         /// </summary>
         Azure = 1
     }

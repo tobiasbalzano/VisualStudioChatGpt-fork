@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisualStudioChatGpt.Model;
 
 namespace VisualStudioChatGpt.Commands
 {
     /// <summary>
-    /// 对话提问
+    /// Ask Anything
     /// </summary>
     internal class AskAnything : MyBase
     {

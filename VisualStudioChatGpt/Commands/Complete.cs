@@ -1,16 +1,11 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using VisualStudioChatGpt.Model;
 
 namespace VisualStudioChatGpt.Commands
 {
     /// <summary>
-    /// 不全代码
+    /// Complete code
     /// </summary>
     internal class Complete : MyBase
     {
@@ -18,7 +13,7 @@ namespace VisualStudioChatGpt.Commands
         {
             await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                // 在主线程执行异步操作完成后的代码逻辑
+                // Code logic to execute after completing the async operation on the main thread
                 var selectedTex = await GetSelectedTextAsync();
                 if (!string.IsNullOrEmpty(selectedTex))
                 {

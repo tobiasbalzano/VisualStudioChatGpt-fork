@@ -1,15 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VisualStudioChatGpt.Model;
 using Vs_ChatGpt.Model;
@@ -40,7 +30,7 @@ namespace VisualStudioChatGpt.Commands
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             ServiceEnum[] enumValues = (ServiceEnum[])Enum.GetValues(typeof(ServiceEnum));
             comboBox1.DataSource = enumValues;
-            comboBox1.SelectedIndex = 0; // 默认选中第一个选项
+            comboBox1.SelectedIndex = 0; // Default to the first option
 
             var entity = MyConfig.Get();
             if (entity != null)
@@ -56,7 +46,7 @@ namespace VisualStudioChatGpt.Commands
                 if (!string.IsNullOrEmpty(entity.proxy))
                 {
                     txt_proxy.Text = entity.proxy;
-                } 
+                }
                 if (!string.IsNullOrEmpty(entity.model))
                 {
                     txt_model.Text = entity.model;
@@ -94,12 +84,12 @@ namespace VisualStudioChatGpt.Commands
                 timeout = txt_timeout.Text.Trim()
             };
             MyConfig.Set(entity);
-            MessageBox.Show("保存配置文件成功!");
+            MessageBox.Show("Configuration file saved successfully!");
         }
 
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://gitee.com/wangshuyu/visual-studio-chat-gpt#%E8%AE%BE%E7%BD%AE%E5%8A%9F%E8%83%BD");
+            Process.Start("https://gitee.com/wangshuyu/visual-studio-chat-gpt#ConfigurationFunction");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

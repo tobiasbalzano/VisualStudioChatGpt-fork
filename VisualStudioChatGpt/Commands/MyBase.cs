@@ -17,13 +17,15 @@ namespace VisualStudioChatGpt.Commands
 {
     internal class MyBase
     {
-        //定义事件处理器的委托类型
+        // Define the delegate type for event handlers.
         internal delegate void MyShowEventHandler(string message);
+
         internal delegate void MyStartEventHandler();
+
         internal delegate void MyEndEventHandler();
 
         /// <summary>
-        /// 插入节点对象
+        /// Insert node object.
         /// </summary>
         internal EditPoint insertPoint;
 
@@ -38,7 +40,7 @@ namespace VisualStudioChatGpt.Commands
         }
 
         /// <summary>
-        /// 添加自定义事件
+        /// Add custom event.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="handler"></param>
@@ -50,10 +52,10 @@ namespace VisualStudioChatGpt.Commands
             commandService.AddCommand(menuItem);
         }
 
-        #region 获取选中内容
+        #region Get Selected Content
 
         /// <summary>
-        /// 获取选中内容
+        /// Get selected content.
         /// </summary>
         /// <returns></returns>
         internal async System.Threading.Tasks.Task<string> GetSelectedTextAsync()
@@ -68,23 +70,26 @@ namespace VisualStudioChatGpt.Commands
             {
                 ret = selection.Text;
             }
+
             if (string.IsNullOrEmpty(ret))
             {
-                MessageBox.Show(TypeModel.Message, "警告提示");
+                MessageBox.Show(TypeModel.Message, "Warning Prompt");
             }
+
             return ret;
         }
-        #endregion 
 
-        #region 选中代码后面插入内容
+        #endregion
+
+        #region Insert Content After Selected Code
 
         /// <summary>
-        /// 选中代码后面插入内容
+        /// Insert content after selected code.
         /// </summary>
-        /// <param name="preValue">预先插入值</param>
-        /// <param name="word">chatgpt搜索文本内容</param>
-        /// <param name="problem">提问信息</param>
-        /// <param name="position">插入位置</param>
+        /// <param name="preValue">Pre-insert values.</param>
+        /// <param name="word">chatgpt Search text content.</param>
+        /// <param name="problem">Ask for information.</param>
+        /// <param name="position">Insert location.</param>
         /// <returns></returns>
         internal async Task InsertChatGptAsync(string word, InsertPointEnum position)
         {
@@ -94,15 +99,15 @@ namespace VisualStudioChatGpt.Commands
 
             if (selection != null && !selection.IsEmpty)
             {
-                if (position == InsertPointEnum.Before)//代码前面
+                if (position == InsertPointEnum.Before) //Before the code
                 {
                     this.insertPoint = selection.TopPoint.CreateEditPoint();
                 }
-                else if (position == InsertPointEnum.After)//代码后面
+                else if (position == InsertPointEnum.After) //After the code
                 {
                     this.insertPoint = selection.BottomPoint.CreateEditPoint();
                 }
-                else if (position == InsertPointEnum.Replace)//注释当前代码 并在后面插入
+                else if (position == InsertPointEnum.Replace) //Comment the current code and insert afterwards
                 {
                     var _insertPoint = selection.TopPoint.CreateEditPoint();
                     _insertPoint.Insert("/*\r\n");
@@ -112,16 +117,18 @@ namespace VisualStudioChatGpt.Commands
 
                     this.insertPoint = selection.BottomPoint.CreateEditPoint();
                 }
-                // 添加事件处理器
+
+                // Add event handler
                 _ = OpenAiAsync(word, VirShowMessage, VirStart, VirEnd);
             }
         }
+
         #endregion
 
-        #region 插入常量
+        #region Insert Constant
 
         /// <summary>
-        /// 插入常量
+        /// Insert Constant
         /// </summary>
         /// <param name="content"></param>
         internal async Task InsertConstAsync(string content, InsertPointEnum position)
@@ -132,17 +139,17 @@ namespace VisualStudioChatGpt.Commands
 
             if (selection != null && !selection.IsEmpty)
             {
-                if (position == InsertPointEnum.Before)//代码前面
+                if (position == InsertPointEnum.Before) //Insert before code
                 {
                     var _insertPoint = selection.TopPoint.CreateEditPoint();
                     _insertPoint.Insert(content);
                 }
-                else if (position == InsertPointEnum.After)//代码后面
+                else if (position == InsertPointEnum.After) //Insert after code
                 {
                     var _insertPoint = selection.BottomPoint.CreateEditPoint();
                     _insertPoint.Insert(content);
                 }
-                else if (position == InsertPointEnum.Replace)//注释当前代码 并在后面插入
+                else if (position == InsertPointEnum.Replace) //Comment current code and insert after
                 {
                     var _insertPoint = selection.TopPoint.CreateEditPoint();
                     _insertPoint.Insert("/*\n");
@@ -155,12 +162,14 @@ namespace VisualStudioChatGpt.Commands
                 }
             }
         }
+
         #endregion
 
-        #region 格式化代码
+
+        #region Format Code
 
         /// <summary>
-        /// 格式化代码
+        /// Format Code
         /// </summary>
         internal async Task SimulateCtrlKCtrlDAsync()
         {
@@ -168,26 +177,28 @@ namespace VisualStudioChatGpt.Commands
             DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
             dte.ExecuteCommand("Edit.FormatDocument");
         }
+
         #endregion
 
-        #region 请求OpenAI 获取数据
+        #region Request OpenAI for Data
 
         /// <summary>
-        /// 请求OpenAI 获取数据
+        /// Request OpenAI for Data
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postData"></param>
         /// <param name="ltcid"></param> 
-        /// <param name="timeout">默认超时 5秒</param> 
+        /// <param name="timeout">Default timeout 5 seconds</param> 
         /// <returns></returns>
-        internal static async Task OpenAiAsync(string word, MyShowEventHandler showEvent, MyStartEventHandler startEvent, MyEndEventHandler endEvent)
+        internal static async Task OpenAiAsync(string word, MyShowEventHandler showEvent,
+            MyStartEventHandler startEvent, MyEndEventHandler endEvent)
         {
             await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
                 var config = MyConfig.Get();
                 if (string.IsNullOrEmpty(config.apikey))
                 {
-                    MessageBox.Show("请设置OpenAI key");
+                    MessageBox.Show("Please set OpenAI key");
 
                     FormSetUp.Instance.Show();
                     FormSetUp.Instance.Activate();
@@ -203,36 +214,39 @@ namespace VisualStudioChatGpt.Commands
                     messages = new List<object> { new { role = "user", content = word } }
                 };
 
-                HttpClientHandler handler = new HttpClientHandler();// 创建HttpClientHandler实例
+                HttpClientHandler handler = new HttpClientHandler(); // Create HttpClientHandler instance
                 if (!string.IsNullOrEmpty(config.proxy))
                 {
-                    handler.Proxy = new WebProxy(config.proxy);// 设置代理服务器地址和端口
+                    handler.Proxy = new WebProxy(config.proxy); // Set proxy server address and port
                 }
+
                 using (HttpClient httpClient = new HttpClient(handler))
                 {
                     var request = new HttpRequestMessage(HttpMethod.Post, config.apiurl);
                     request.Content = new StringContent(JsonConvert.SerializeObject(par), Encoding.UTF8);
                     request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    if (config.serviceName == ServiceEnum.Azure.ToString())//微软Azure云
+                    if (config.serviceName == ServiceEnum.Azure.ToString()) //Microsoft Azure Cloud
                     {
                         request.Content.Headers.Add("api-key", $"{config.apikey}");
                     }
-                    else//OpenAI
+                    else //OpenAI
                     {
                         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", $"{config.apikey}");
                     }
 
-                    using (HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))//发送请求并获取响应
+                    using (HttpResponseMessage response =
+                           await httpClient.SendAsync(request,
+                               HttpCompletionOption.ResponseHeadersRead)) //Send request and get response
                     {
                         if (response.IsSuccessStatusCode)
                         {
-                            startEvent.Invoke();//开始
+                            startEvent.Invoke(); //Start
 
                             response.EnsureSuccessStatusCode();
                             using (Stream responseStream = await response.Content.ReadAsStreamAsync())
                             using (StreamReader reader = new StreamReader(responseStream, Encoding.UTF8))
                             {
-                                while (!reader.EndOfStream)//逐行读取响应流
+                                while (!reader.EndOfStream) //Read response stream line by line
                                 {
                                     string line = await reader.ReadLineAsync();
                                     if (!string.IsNullOrEmpty(line) && line.Contains("content"))
@@ -240,12 +254,13 @@ namespace VisualStudioChatGpt.Commands
                                         line = line.Remove(0, 5);
                                         var obj = JsonConvert.DeserializeObject<dynamic>(line);
                                         var temp = obj["choices"][0]["delta"]["content"].ToString();
-                                        showEvent.Invoke(temp);//插入gpt结果 
+                                        showEvent.Invoke(temp); //Insert gpt result 
                                         await Task.Delay(1);
                                     }
                                 }
                             }
-                            endEvent.Invoke();//结束
+
+                            endEvent.Invoke(); //End
                         }
                         else
                         {
@@ -256,6 +271,7 @@ namespace VisualStudioChatGpt.Commands
                             {
                                 message = obj["error"]["code"].ToString();
                             }
+
                             MessageBox.Show(message);
 
                             FormSetUp.Instance.Show();
@@ -265,22 +281,23 @@ namespace VisualStudioChatGpt.Commands
                 }
             });
         }
+
         #endregion
 
-        #region 虚方法
+        #region Virtual Methods
 
         /// <summary>
-        /// 自定义处理事件
+        /// Custom event handler
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         internal virtual async void VirHandler(object sender, EventArgs e)
         {
-            MessageBox.Show("未实现此功能!");
+            MessageBox.Show("This functionality is not implemented!");
         }
 
         /// <summary>
-        /// 插入代码
+        /// Show message
         /// </summary>
         /// <param name="message"></param>
         internal virtual void VirShowMessage(string message)
@@ -292,7 +309,7 @@ namespace VisualStudioChatGpt.Commands
         }
 
         /// <summary>
-        /// 执行开始
+        /// Start execution
         /// </summary>
         /// <param name="message"></param>
         internal virtual void VirStart()
@@ -300,12 +317,13 @@ namespace VisualStudioChatGpt.Commands
         }
 
         /// <summary>
-        /// 执行完成
+        /// Execution completed
         /// </summary>
         /// <param name="message"></param>
         internal virtual void VirEnd()
         {
         }
+
         #endregion
     }
 }

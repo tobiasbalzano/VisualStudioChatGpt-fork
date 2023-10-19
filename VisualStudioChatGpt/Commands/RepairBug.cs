@@ -1,9 +1,5 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VisualStudioChatGpt.Model;
 
 namespace VisualStudioChatGpt.Commands
@@ -14,7 +10,7 @@ namespace VisualStudioChatGpt.Commands
         {
             await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                // 在主线程执行异步操作完成后的代码逻辑
+                // Execute code logic after the asynchronous operation is completed on the main thread
                 var selectedTex = await GetSelectedTextAsync();
                 if (!string.IsNullOrEmpty(selectedTex))
                 {

@@ -1,55 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vs_ChatGpt.Model
+﻿namespace Vs_ChatGpt.Model
 {
 
     public class MyConfigModel
     {
         /// <summary>
-        /// 服务名称: OpenAI/Azure云
+        /// Service Name: OpenAI/Azure Cloud
         /// </summary>
         public string serviceName { get; set; }
 
         /// <summary>
-        /// 接口地址
+        /// API URL
         /// </summary>
         public string apiurl { get; set; }
 
         /// <summary>
-        /// 验签key
+        /// API Key
         /// </summary>
         public string apikey { get; set; }
 
         /// <summary>
-        /// 代理地址
-        /// Azure云直接删除不添加就行
+        /// Proxy Address
+        /// For Azure Cloud, you can just delete it instead of adding
         /// </summary>
         public string proxy { get; set; }
 
         /// <summary>
-        /// 最大的tokens
-        /// 一般500基本够用了
+        /// Maximum Tokens
+        /// Generally, 500 should be sufficient
         /// </summary>
         public string maxtoken { get; set; }
 
         /// <summary>
-        /// 热度随机性
-        /// 一般给0,越小越严谨,建议别超过0.3
+        /// Temperature Randomness
+        /// Usually set to 0, the smaller the stricter. Recommended not to exceed 0.3
         /// </summary>
         public string temperature { get; set; }
 
         /// <summary>
-        /// 对话模型
+        /// Conversation Model
         /// </summary>
         public string model { get; set; }
 
         /// <summary>
-        /// 默认超时时间
-        /// 30秒一般足够用了 除非特别大的一段代码
+        /// Default Timeout Time
+        /// Generally, 30 seconds should be enough, unless you have a particularly large piece of code
         /// </summary>
         public string timeout { get; set; }
     }

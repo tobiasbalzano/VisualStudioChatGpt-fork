@@ -1,11 +1,6 @@
-﻿using EnvDTE;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks; 
-using VisualStudioChatGpt.Model; 
+using VisualStudioChatGpt.Model;
 
 namespace VisualStudioChatGpt.Commands
 {
@@ -15,7 +10,7 @@ namespace VisualStudioChatGpt.Commands
         {
             await ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                // 在主线程执行异步操作完成后的代码逻辑
+                // Code logic to execute after completing the async operation on the main thread
                 var selectedTex = await GetSelectedTextAsync();
                 if (!string.IsNullOrEmpty(selectedTex))
                 {
@@ -29,6 +24,7 @@ namespace VisualStudioChatGpt.Commands
             ThreadHelper.ThrowIfNotOnUIThread();
             this.insertPoint.Insert("\n/*");
         }
+
         internal override void VirEnd()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
