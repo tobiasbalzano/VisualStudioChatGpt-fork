@@ -1,135 +1,132 @@
 # Visual Studio ChatGPT
-- 这是一个直接在Visual Studio中添加chatGPT功能的扩展。
-- 您将能够直接通过文本编辑器或通过新的特定工具窗口查阅 chatGPT。
-- Visual Studio 2022: [插件地址](https://marketplace.visualstudio.com/items?itemName=MogoVsixRightMenu1.VisualStudioChatGpt) 
-- 存储库地址: [Gitee(主库)](https://gitee.com/wangshuyu/visual-studio-chat-gpt) 
-- 存储库地址: [Github(辅库)](https://github.com/wangshuyu/VisualStudioChatGpt) 
+- This is an extension that adds ChatGPT functionality directly into Visual Studio.
+- You will be able to consult ChatGPT directly through the text editor or through a new specific tool window.
+- Visual Studio 2022: [Plugin Address](https://marketplace.visualstudio.com/items?itemName=MogoVsixRightMenu1.VisualStudioChatGpt)
+- Repository Address: [Gitee (Main)](https://gitee.com/wangshuyu/visual-studio-chat-gpt)
+- Repository Address: [Github (Secondary)](https://github.com/wangshuyu/VisualStudioChatGpt)
 
-## 说明
-- 在1.0前的预览版本中,插件可能会存在bug,大家有问题可以随时提
-- 我尽量在当天修复bug
+## Description
+- In versions before 1.0, the plugin may have bugs. Feel free to report any issues.
+- I'll try to fix bugs the same day.
 
-
-## 效果图
-- 选择一种方法并右键单击文本编辑器，您将看到这些新的chatGPT命令： 
+## Screenshots
+- Choose a method and right-click the text editor, you will see these new ChatGPT commands:
 - ![image](https://images001.wangshuyu.top/Images001/2023/0821/151003346.png)
-- 效果动画
-- https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.gif
+- Animated Effect
+- [Animated Effect](https://gitee.com/wangshuyu/visual-studio-chat-gpt/blob/master/VisualStudioChatGpt/Resources/vschatgpt2022.gif)
 
-## 文本编辑器中的功能
-- **补全代码:** 开始编写方法，选择它并要求完成。
-- **查找Bug:** 查找所选方法或代码片段的错误bugs。
-- **修复bug:** 修改所选方法或代码片段的错误。
-- **优化压缩代码:** 优化所选的代码的方法。
-- **注释说明:** 编写所选方法的说明。 
-- **添加方法Summary:** 添加 C# 方法的摘要Summary。- 
-- **添加单元测试:** 为所选方法创建单元测试。
-- **重构代码:** 重构代码,实验性的,可以尝试使用。
-- **AI对话:** 直接跳转到ChatGpt对话网页版。
-- **设置:** 设置OpenAI相关配置信息。
+## Features in Text Editor
+- **Code Completion:** Start writing a method, select it, and request completion.
+- **Find Bugs:** Find errors in the selected method or code snippet.
+- **Fix Bugs:** Modify errors in the selected method or code snippet.
+- **Optimize Code:** Optimize the selected code method.
+- **Add Comments:** Write explanations for the selected method.
+- **Add Method Summary:** Add a C# method summary.
+- **Add Unit Tests:** Create unit tests for the selected method.
+- **Refactor Code:** Refactor code, experimental, can try using.
+- **AI Chat:** Jump directly to the ChatGpt web version.
+- **Settings:** Set OpenAI-related configuration information.
 
-## 设置功能 
+## Settings
 ![image](https://images001.wangshuyu.top/Images001/2023/0531/164701930.png)
-- 后端服务: 支持OpenAI和Azure云
-- Api Url: 接口地址, **这个要和后端服务对应上, 因为OpenAI和Azure云验签方式有点小区别**
-- Api Key: 验签的Key,如何申请 [OpenAI](https://beta.openai.com/account/api-keys)  [Azure云](https://learn.microsoft.com/azure/cognitive-services/openai/overview) 
-- Proxy代理: 代理地址,格式:http://ip:port 例如: http://127.0.0.1:10809
-- MaxToken: 做大返回的tokens数量,不用太大
-- temperature: 热度,模型随机性,建议别超过0.3
-- model: 模型,这个模型比达芬奇便宜,能力足够用, $0.002/750单词
-- TimeOut(秒):超时时长
+- Backend Service: Supports OpenAI and Azure Cloud
+- Api Url: Interface address, **this must correspond to the backend service, because OpenAI and Azure Cloud have a slight difference in verification methods**
+- Api Key: Verification Key, how to apply [OpenAI](https://beta.openai.com/account/api-keys) [Azure Cloud](https://learn.microsoft.com/azure/cognitive-services/openai/overview)
+- Proxy: Proxy address, format: http://ip:port, for example: http://127.0.0.1:10809
+- MaxToken: Maximum number of returned tokens, not too large
+- Temperature: Heat, model randomness, recommended not to exceed 0.3
+- Model: The model, cheaper than Da Vinci, sufficient ability, $0.002/750 words
+- TimeOut (seconds): Timeout duration
 
+## Api Interface
+### Apply for OpenAI Key
+- To use this tool, you must register for the OpenAI API and apply for a developer key.
+- You need to create and set up an OpenAI API key.
+- OpenAI key application address [https://beta.openai.com/account/api-keys](https://beta.openai.com/account/api-keys)
+- OpenAI officially provides a [status page](https://status.openai.com/), although minor faults are not shown much, major outages can be seen in the announcement.
+- If you don't have a proxy, you can consider using Alibaba Cloud Function Compute to transparently pass the OpenAI interface address, [reference project](https://github.com/dyc87112/OpenAIProxy)
 
-## Api接口
-### OpenAI申请Key
-- 要使用此工具，必须注册OpenAI API, 并申请可以发者key。
-- 您需要创建并设置一个OpenAI API密钥。 
-- OpenAI申请key地址 [https://beta.openai.com/account/api-keys](https://beta.openai.com/account/api-keys)
-- OpenAI官方提供了一个[状态页](https://status.openai.com/)，虽然小故障不怎么显示，但大面积宕机时能看到公告。
-- 如果没有代理,可以考虑使用阿里云函数计算方式,透传OpenAI接口地址哦,[参考项目](https://github.com/dyc87112/OpenAIProxy)
+### Apply for Microsoft Azure Cloud Key
+- Microsoft Azure Cloud key application address: [https://learn.microsoft.com/azure/cognitive-services/openai/overview](https://learn.microsoft.com/azure/cognitive-services/openai/overview)
+- Pros: At least twice as fast as native OpenAI, no need for a ladder
+- Cons: Application is cumbersome, requires a corporate account
 
-### 微软Azure云申请Key
-- 微软Azure云申请key地址: [https://learn.microsoft.com/azure/cognitive-services/openai/overview](https://learn.microsoft.com/azure/cognitive-services/openai/overview)
-- 优点: 速度比OpenAI原生快至少一倍,不用搭建梯子
-- 缺点: 申请比较麻烦,需要企业账户
-  
-### 自建接口Api
-- 完全兼容OpenAI接口模式
-- 和openai一样价格 少量充值使用
-- [Api接口文档](https://chat.wangshuyu.top/#/ApiDoc)
-- [Chat聊天工具](https://chat.wangshuyu.top/)
+### Build Your Own Api Interface
+- Fully compatible with OpenAI interface mode
+- Same price as OpenAI for small recharge use
+- [Api Interface Documentation](https://chat.wangshuyu.top/#/ApiDoc)
+- [Chat Tool](https://chat.wangshuyu.top/)
 
+### Note
+- You can apply for either OpenAI or Microsoft Azure Cloud.
 
-### 说明
-- OpenAI和微软Azure云申请一个即可
+## How to Avoid OpenAI Account Ban
+- Do not use proxies from regions not served by OpenAI
+- Using a virtual overseas phone number is more likely to get your account banned
+- Linking a credit card can significantly increase account survival rate
 
-## 如何避免 OpenAI 封禁账号 API权限
-- 不要使用 OpenAI 不服务地区的代理
-- 虚拟海外手机号更可能导致账号被封
-- 绑定信用卡可以大幅提升账号存活率
+## Known Issues
+- Unfortunately, the API provided by OpenAI for interacting with ChatGPT has limitations on the size of the questions and the given answers.
+- If the question sent is too long (e.g., a method with multiple lines) and/or the generated response is too long, the API may truncate the response or not respond at all.
+- For these situations, I suggest you make requests through the tool window in a way that ChatGPT will not refuse to answer, or try modifying the model options to improve the response.
 
-## 已知问题
-- 不幸的是，OpenAI 提供的用于与 chatGPT 交互的 API 对问题的大小和给定的答案有限制。
-- 如果发送的问题太长（例如，具有多行的方法）和/或生成的响应太长，API 可能会中断响应甚至根本不响应。
-- 对于这些情况，我建议您通过工具窗口提出请求，以 chatGPT 不会拒绝回答的方式自定义问题，或尝试修改模型选项以改进响应
+## Disclaimer
+- Since this extension depends on the API provided by OpenAI, they may make some changes that could affect the operation of this extension without further notice.
+- Since this extension depends on the API provided by OpenAI, the generated response may not be as expected.
+- The speed and availability of the response depend directly on the API provided by OpenAI.
+- If you find any errors or unexpected behavior, please leave a comment so that I can provide a fix.
 
-## 免责声明
-- 由于此扩展取决于 OpenAI 提供的 API，因此它们可能会进行一些更改，从而影响此扩展的操作，恕不另行通知。
-- 由于此扩展取决于 OpenAI 提供的 API，因此生成的响应可能不是预期的。
-- 响应的速度和可用性直接取决于OpenAI提供的API。
-- 如果您发现任何错误或意外行为，请发表评论，以便我提供修复。 
-
-## 历史版本
+## Version History
 ### v0.3.4 - v0.3.5
-- 新增重构代码功能,实验性
-- 
+- Added code refactoring feature, experimental
+
 ### v0.3.2 - v0.3.3
-- 调整查询Prompt话术
-- 
+- Adjusted query prompt wording
+
 ### v0.3.1
-- 调整聊天网址
-- 调整查询Prompt话术
+- Adjusted chat URL
+- Adjusted query prompt wording
 
 ### v0.3.0
-- 对话入口改自建Chat地址,有人反馈不会翻墙
-- 设置增加自建api链接,价格和openai一致,$0.002/1000 token
+- Changed chat entry to self-built chat address, as some users reported not being able to bypass the Great Firewall
+- Added settings for self-built API link, same price as OpenAI, $0.002/1000 tokens
 
 ### v0.2.7--v0.2.8
-- 增加秘钥无效异常提示验证功能
+- Added invalid key exception prompt verification feature
 
 ### v0.2.6
-- 继续修复关于配置文件存贮后,重启系统丢失问题,本次应该完整修复了
+- Continued to fix the issue where the configuration file was lost after system restart, this time it should be completely fixed
 
 ### v0.2.5
-- 支持非流式返回结果
-  
+- Supports non-streaming return results
+
 ### v0.2.4
-- 修复配置文件存储导致程序异常问题
-- 修复配置文件支持全局存储功能
-  
+- Fixed an issue where storing the configuration file caused the program to crash
+- Fixed the configuration file to support global storage
+
 ### v0.2.3
-- 调整配置文件存储位置
-- 说明: 非常抱歉, 原来的存储配置方案,只能在当前vs窗口生效,不是全局生效,此版本已修复这个问题
+- Adjusted the storage location of the configuration file
+- Note: I'm very sorry, the original storage configuration scheme was only effective in the current VS window, not globally. This version has fixed this issue.
 
 ### v0.2.2
-- 新增翻译功能
-- 优化: 补全代码功能 提高补全的准确度
-- 热度temperature参数,默认值调整成0
+- Added translation feature
+- Optimization: Improved the accuracy of the code completion feature
+- Adjusted the default value of the temperature parameter to 0
 
 ### v0.2.1
-- 更换插件唯一GUID,和其他插件重复了
-- 新增微软Azure云
-- 热度temperature参数,默认值调整成0
-- 重构所有方法OpenAI前置话术和定语词,使返回结果更符合预期
-- 去掉AddSummary(添加注释)功能,这个和Explain(注释说明)结果非常相似
+- Changed the unique GUID of the plugin as it was duplicated with other plugins
+- Added Microsoft Azure Cloud
+- Adjusted the default value of the temperature parameter to 0
+- Refactored all method OpenAI preambles and attributive words to make the returned results more in line with expectations
+- Removed the AddSummary (add comments) feature, as it was very similar to the Explain (add explanations) feature
 
 ### v0.1.3
-- 初始化版本 基本功能支持
-- 完成代码
-- 查找bugs
-- 修复bugs
-- 优化代码
-- 写说明
-- 添加注释
-- 添加方法柴窑
-- 添加单元测试
+- Initial version with basic features supported
+- Complete code
+- Find bugs
+- Fix bugs
+- Optimize code
+- Write explanations
+- Add comments
+- Add method kiln
+- Add unit tests
